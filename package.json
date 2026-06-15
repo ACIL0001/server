@@ -1,0 +1,62 @@
+{
+  "name": "server",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch index.ts",
+    "start": "bun index.ts",
+    "seed": "bun run scripts/seed.ts",
+    "test:sms": "bun run scripts/test-sms.ts",
+    "typecheck": "bun x tsc -p tsconfig.json --noEmit",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/bun": "latest",
+    "@types/compression": "^1.8.1",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/csurf": "^1.11.5",
+    "@types/hpp": "^0.2.7",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.1.0",
+    "tsx": "^4.21.0"
+  },
+  "peerDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@socket.io/redis-adapter": "^8.3.0",
+    "@types/express-session": "^1.18.1",
+    "bcryptjs": "^3.0.3",
+    "compression": "^1.8.1",
+    "connect-typeorm": "^2.0.0",
+    "cookie-parser": "^1.4.7",
+    "cookie-signature": "^1.2.2",
+    "cookies": "^0.9.1",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
+    "ioredis": "^5.10.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.6.1",
+    "morgan": "^1.10.0",
+    "multer": "^2.1.1",
+    "nodemailer": "^6.10.0",
+    "pino": "^9.6.0",
+    "pino-http": "^11.0.0",
+    "rate-limit-redis": "^4.3.1",
+    "reflect-metadata": "^0.2.2",
+    "socket.io": "^4.8.1",
+    "tesseract.js": "^7.0.0",
+    "uuid": "^14.0.0"
+  }
+}

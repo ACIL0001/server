@@ -1,0 +1,6 @@
+import Joi from "joi";
+import { objectId, paginationQuery } from "../common/common.validator";
+export const createSchema = Joi.object({ body: Joi.object({ name: Joi.string().trim().max(200).required(), wilaya: objectId.required(), commune: objectId.required(), female_count: Joi.number().min(0).default(0), male_count: Joi.number().min(0).default(0), total_voters: Joi.number().min(0).default(0), number_of_desks: Joi.number().min(0).default(0), location: Joi.string().trim().max(500).optional() }).required() }).unknown(true);
+export const updateSchema = Joi.object({ params: Joi.object({ id: objectId.required() }).required(), body: Joi.object({ name: Joi.string().trim().max(200), wilaya: objectId, commune: objectId, female_count: Joi.number().min(0), male_count: Joi.number().min(0), total_voters: Joi.number().min(0), number_of_desks: Joi.number().min(0), location: Joi.string().trim().max(500) }).min(1).required() }).unknown(true);
+export const listSchema = Joi.object({ query: Joi.object({ wilaya: objectId.optional(), commune: objectId.optional(), search: Joi.string().max(100).optional(), ...paginationQuery }).required() }).unknown(true);
+export const getByIdSchema = Joi.object({ params: Joi.object({ id: objectId.required() }).required() }).unknown(true);
