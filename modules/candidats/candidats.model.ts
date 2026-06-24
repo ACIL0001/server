@@ -13,6 +13,7 @@ export interface ICandidat extends Document {
   created_by?: Types.ObjectId;
   is_favorite: boolean;
   result: number;
+  number?: number;
 }
 
 const candidatSchema = new Schema<ICandidat>(
@@ -29,6 +30,7 @@ const candidatSchema = new Schema<ICandidat>(
     created_by: { type: Schema.Types.ObjectId, ref: "MemberActif" },
     is_favorite: { type: Boolean, default: false },
     result: { type: Number, default: 0, min: 0 },
+    number: { type: Number, default: 0 },
   },
   {
     timestamps: true,

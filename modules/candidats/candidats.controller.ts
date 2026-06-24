@@ -10,7 +10,7 @@ import {
 import type { JwtUser } from "../../middleware/auth";
 
 const POPULATE = ["party", "wilaya", "commune"];
-const SELECT = "full_name nin phone party wilaya commune is_favorite result created_by createdAt updatedAt";
+const SELECT = "full_name nin phone party wilaya commune is_favorite result number created_by createdAt updatedAt";
 
 const handleImage = (body: Record<string, unknown>, req: Request) => {
   const file = (req as Request & { file?: { buffer: Buffer; mimetype: string } }).file;

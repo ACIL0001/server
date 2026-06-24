@@ -9,6 +9,7 @@ export interface IParty extends Document {
   logo_mimetype?: string;
   wilaya: Types.ObjectId;
   created_by: Types.ObjectId;
+  number?: number;
 }
 
 const partySchema = new Schema<IParty>(
@@ -21,6 +22,7 @@ const partySchema = new Schema<IParty>(
     logo_mimetype: { type: String, select: false },
     wilaya: { type: Schema.Types.ObjectId, ref: "Wilaya", required: true },
     created_by: { type: Schema.Types.ObjectId, ref: "Admin" },
+    number: { type: Number, default: 0 },
   },
   {
     timestamps: true,

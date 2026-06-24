@@ -4,7 +4,7 @@ import * as crud from "../common/crud.helpers";
 import type { JwtUser } from "../../middleware/auth";
 import { assertPartyInScope } from "./parties-scope";
 
-const PARTY_SELECT = "name acronym leader founded wilaya createdAt";
+const PARTY_SELECT = "name acronym leader founded wilaya number createdAt";
 const PARTY_POPULATE = "wilaya";
 
 export const list: RequestHandler = async (req, res, next) => {

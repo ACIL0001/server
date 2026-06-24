@@ -96,8 +96,8 @@ export async function findAllDeskResultsScoped(
         createdAt: 1,
         updatedAt: 1,
         desk: { _id: "$_desk._id", desk_number: "$_desk.desk_number", type: "$_desk.type" },
-        party: { _id: "$_party._id", name: "$_party.name" },
-        candidat: { _id: "$_candidat._id", full_name: "$_candidat.full_name" },
+        party: { _id: "$_party._id", name: "$_party.name", number: "$_party.number" },
+        candidat: { _id: "$_candidat._id", full_name: "$_candidat.full_name", number: "$_candidat.number" },
         owner: { _id: "$_owner._id", full_name: "$_owner.full_name" },
         hasImage: { $ne: [{ $type: "$image" }, "missing"] },
       },
@@ -187,8 +187,8 @@ export async function verifyDeskWithImage(
 ): Promise<VerificationReport> {
   // 1. Get all results for this desk
   const results = await ResultDesk.find({ desk: deskId })
-    .populate("candidat", "full_name")
-    .populate("party", "name")
+    .populate("candidat", "full_name number")
+    .populate("party", "name number")
     .select("+image +image_mimetype")
     .lean();
 
@@ -252,15 +252,15 @@ export async function verifyDeskWithImage(
 // ── Get Verification Report for a Desk ───────────────────────
 export async function getDeskVerificationReport(deskId: string) {
   const results = await ResultDesk.find({ desk: deskId })
-    .populate("candidat", "full_name")
-    .populate("party", "name")
+    .populate("candidat", "full_name number")
+    .populate("party", "name number")
     .lean();
 
   return results.map((r: any) => ({
     id: r._id,
     candidatId: String(r.candidat?._id || r.candidat),
-    candidatName: r.candidat?.full_name || "Unknown",
-    partyName: r.party?.name || "Unknown",
+    candidatName: r.candidat?.number ? `${r.candidat.number} - ${r.candidat.full_name}` : r.candidat?.full_name || "Unknown",
+    partyName: r.party?.number ? `${r.party.number} - ${r.party.name}` : r.party?.name || "Unknown",
     manualTotal: r.total,
     ocrExtractedTotal: r.ocr_extracted_total ?? null,
     ocrConfidence: r.ocr_confidence ?? null,

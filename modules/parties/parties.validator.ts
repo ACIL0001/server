@@ -7,7 +7,8 @@ export const createSchema = Joi.object({
     acronym: Joi.string().trim().max(20).required(),
     leader: Joi.string().trim().max(100).required(),
     founded: Joi.string().trim().optional(),
-    wilaya: objectId.required()
+    wilaya: objectId.required(),
+    number: Joi.number().integer().min(1).optional()
   }).required().unknown(true),
 }).unknown(true);
 
@@ -18,7 +19,8 @@ export const updateSchema = Joi.object({
     acronym: Joi.string().trim().max(20).optional(),
     leader: Joi.string().trim().max(100).optional(),
     founded: Joi.string().trim().optional(),
-    wilaya: objectId.optional()
+    wilaya: objectId.optional(),
+    number: Joi.number().integer().min(1).optional()
   }).min(1).required().unknown(true),
 }).unknown(true);
 
